@@ -25,8 +25,12 @@ try {
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="../css/style.css">
     <style>
-        html, body {
+       html, body {
     height: 100%;
+    background-image: url('../images/adminbg.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
 }
 
 body {
@@ -42,6 +46,43 @@ footer {
     position: relative;
     bottom: 0;
     width: 100%;
+}
+
+.table-responsive {
+    margin-top: 20px;
+}
+
+.table {
+    background-color: rgba(255, 255, 255, 0.8); /* White background with some transparency */
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Adding shadow for emphasis */
+}
+
+.table th, .table td {
+    vertical-align: middle;
+    padding: 12px 15px;
+    text-align: center;
+}
+
+.table thead {
+    background-color: #343a40; /* Dark background for the header */
+    color: #fff; /* White text for the header */
+}
+
+.table tbody tr:nth-child(odd) {
+    background-color: #f8f9fa; /* Light grey background for odd rows */
+}
+
+.table tbody tr:nth-child(even) {
+    background-color: #e9ecef; /* Slightly darker background for even rows */
+}
+
+.table-hover tbody tr:hover {
+    background-color: #f1f1f1; /* Highlight on row hover */
+}
+
+.table td {
+    font-size: 14px; /* Slightly smaller font for the table cells */
 }
     </style>
 </head>
@@ -109,3 +150,4 @@ footer {
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
+

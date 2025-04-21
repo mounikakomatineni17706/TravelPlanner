@@ -21,7 +21,7 @@ if (isset($_COOKIE['remember_token'])) {
 // Destroy the session
 session_destroy();
 
-// Redirect to login page
-header("Location: pages/login.php");
+// Redirect to the homepage (replace with your homepage URL if needed)
+header("Location: index.php");  // or any other path for your homepage
 exit;
 ?>

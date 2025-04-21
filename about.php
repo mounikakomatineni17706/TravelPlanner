@@ -1,4 +1,3 @@
-
 <?php
 session_start();
 ?>
@@ -7,7 +6,7 @@ session_start();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Travel Planner</title>
+    <title>About Us - Travel Planner</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/style.css">
     <style>
@@ -28,12 +27,12 @@ session_start();
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="about.php" style="color: white;">About Us</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="contact.php" style="color: white;">Contact</a>
-                </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="about.php" style="color: white;">About Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.php" style="color: white;">Contact</a>
+                    </li>
                     <?php if (isset($_SESSION['user_id'])): ?>
                         <li class="nav-item">
                             <a class="nav-link" href="pages/dashboard.php">Dashboard</a>
@@ -62,12 +61,8 @@ session_start();
     <div class="container mt-5">
         <div class="row">
             <div class="col-md-8 offset-md-2 text-center">
-                <h1 class="display-4" style="color: white;">Plan Your Next Adventure</h1>
-                <p class="lead" style="color: white;">Organize your trips, track your itineraries, and make your travel dreams a reality.</p>
-
-                <?php if (isset($_SESSION['user_id'])): ?>
-                    <a href="pages/dashboard.php" class="btn btn-primary btn-lg">View My Trips</a>
-                <?php endif; ?>
+                <h1 class="display-4" style="color: white;">About Us</h1>
+                <p class="lead" style="color: white;" >Get to know more about Travel Planner and how we can help you plan your next adventure.</p>
             </div>
         </div>
 
@@ -77,41 +72,48 @@ session_start();
                 <img src="images/about.jpg" alt="About Travel Planner" class="img-fluid rounded">
             </div>
             <div class="col-md-6">
-                <h2 style="color: white;">About Travel Planner</h2>
-                <p style="color: white;">Travel Planner helps you turn your dream journeys into real itineraries. From booking details to budget planning, we make it easy to keep everything in one place so you can focus on enjoying your adventures.</p>
+                <h2 style="color: white;">Our Mission</h2>
+                <p style="color: white;">At Travel Planner, we are committed to helping travelers organize their trips and make their travel dreams a reality. From detailed itineraries to budget management, we offer an all-in-one platform to make planning simple and fun.</p>
+                <h3 style="color: white;">Why Choose Us?</h3>
+                <ul>
+                    <li style="color: white;">Easy-to-use trip planner</li>
+                    <li style="color: white;">Track your itineraries and bookings</li>
+                    <li style="color: white;">Connect with like-minded travelers</li>
+                    <li style="color: white;">Access to exclusive deals on popular destinations</li>
+                </ul>
             </div>
         </div>
 
-        <!-- Destinations Section -->
+        <!-- Our Team Section -->
         <div class="row mt-5 text-center">
-            <h2 class="mb-4">Popular Destinations</h2>
+            <h2 class="mb-4" style="color: white;">Meet Our Team</h2>
 
             <div class="col-md-4">
                 <div class="card mb-4">
-                    <img src="images/paris.jpg" class="card-img-top" alt="Paris">
+                    <img src="images/team1.jpg" class="card-img-top" alt="Team Member 1">
                     <div class="card-body">
-                        <h5 class="card-title">Paris, France</h5>
-                        <p class="card-text">Experience the romance of the Eiffel Tower and world-class cuisine.</p>
+                        <h5 class="card-title">John Doe</h5>
+                        <p class="card-text">Founder & CEO - Passionate about travel and helping others experience the world.</p>
                     </div>
                 </div>
             </div>
 
             <div class="col-md-4">
                 <div class="card mb-4">
-                    <img src="images/tokyo.jpg" class="card-img-top" alt="Tokyo">
+                    <img src="images/team2.jpg" class="card-img-top" alt="Team Member 2">
                     <div class="card-body">
-                        <h5 class="card-title">Tokyo, Japan</h5>
-                        <p class="card-text">Dive into a vibrant culture of technology, tradition, and tasty street food.</p>
+                        <h5 class="card-title">Jane Smith</h5>
+                        <p class="card-text">Co-Founder & CTO - Focused on creating a seamless user experience for travelers.</p>
                     </div>
                 </div>
             </div>
 
             <div class="col-md-4">
                 <div class="card mb-4">
-                    <img src="images/bali.jpg" class="card-img-top" alt="Bali">
+                    <img src="images/team3.jpg" class="card-img-top" alt="Team Member 3">
                     <div class="card-body">
-                        <h5 class="card-title">Bali, Indonesia</h5>
-                        <p class="card-text">Relax on beautiful beaches or explore lush jungles and temples.</p>
+                        <h5 class="card-title">Alice Johnson</h5>
+                        <p class="card-text">Marketing Lead - Ensures everyone knows about Travel Planner's awesome features.</p>
                     </div>
                 </div>
             </div>

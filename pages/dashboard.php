@@ -2,12 +2,21 @@
 session_start();
 require_once "../db/connect.php";
 
-// Check if user is logged in
+// Check if user is logged in and their role is valid
 requireLogin();
 
 // Initialize
 $searchTerm = '';
 $trips = [];
+
+// Check if the user is an admin and their request is not approved
+if (isset($_SESSION['role']) && strtolower($_SESSION['role']) === 'admin') {
+    // Check if the admin's request is still pending
+    if ($_SESSION['approved'] == 0) { // Assuming there's an 'approved' column in the session or database
+        $message = "Your admin request is still pending approval.";
+        $messageType = "warning"; // Set the message type to a warning
+    }
+}
 
 try {
     if (isset($_GET['search']) && !empty(trim($_GET['search']))) {
@@ -52,7 +61,10 @@ if (isset($_SESSION['message_type'])) {
             margin: 0;
             display: flex;
             flex-direction: column;
-            background-color: #c4dce0;
+            background-image: url('../images/bg1.jpg'); /* Replace with your image path */
+            background-size: cover; /* Ensures the background image covers the entire page */
+            background-position: center; /* Keeps the image centered */
+            background-repeat: no-repeat; /* Prevents repeating the background image */
         }
 
         .container {
@@ -95,7 +107,7 @@ if (isset($_SESSION['message_type'])) {
         <?php endif; ?>
 
         <div class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center mb-4 gap-3">
-            <h1 class="mb-0">Welcome, <?php echo htmlspecialchars($_SESSION['username']); ?>!</h1>
+            <h1 class="mb-0" >Welcome, <?php echo htmlspecialchars($_SESSION['username']); ?>!</h1>
 
             <form class="d-flex" method="GET" action="dashboard.php">
                 <input class="form-control me-2" type="search" name="search" placeholder="Search trips..." value="<?php echo htmlspecialchars($searchTerm); ?>">
@@ -122,7 +134,7 @@ if (isset($_SESSION['message_type'])) {
                                 <h3 class="card-title"><?php echo htmlspecialchars($trip['destination']); ?></h3>
                                 <p class="trip-dates">
                                     <i class="bi bi-calendar"></i>
-                                    <?php echo date('M d, Y', strtotime($trip['start_date'])); ?> -
+                                    <?php echo date('M d, Y', strtotime($trip['start_date'])); ?> - 
                                     <?php echo date('M d, Y', strtotime($trip['end_date'])); ?>
                                 </p>
 

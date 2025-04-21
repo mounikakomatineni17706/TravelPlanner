@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 19, 2025 at 03:05 PM
+-- Generation Time: Apr 21, 2025 at 03:08 PM
 -- Server version: 11.6.2-MariaDB
 -- PHP Version: 8.2.12
 
@@ -39,6 +39,27 @@ CREATE TABLE `activities` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `contact_messages`
+--
+
+CREATE TABLE `contact_messages` (
+  `id` int(11) NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `message` text NOT NULL,
+  `submitted_at` timestamp NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `contact_messages`
+--
+
+INSERT INTO `contact_messages` (`id`, `name`, `email`, `message`, `submitted_at`) VALUES
+(1, 'user', 'user@gmail.com', 'good', '2025-04-21 12:09:51');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `trips`
 --
 
@@ -61,7 +82,8 @@ CREATE TABLE `trips` (
 INSERT INTO `trips` (`trip_id`, `user_id`, `destination`, `start_date`, `end_date`, `description`, `budget`, `created_at`, `updated_at`) VALUES
 (2, 1, 'London', '2025-04-24', '2025-05-03', 'Travelling', 5000.00, '2025-04-19 10:52:13', '2025-04-19 10:52:13'),
 (3, 2, 'Japan', '2025-04-25', '2025-05-02', 'Business', 6000.00, '2025-04-19 11:04:40', '2025-04-19 11:04:40'),
-(5, 1, 'Japan', '2025-04-25', '2025-04-30', 'Travel', 6000.00, '2025-04-19 13:04:25', '2025-04-19 13:04:25');
+(5, 1, 'Japan', '2025-04-25', '2025-04-30', 'Travel', 6000.00, '2025-04-19 13:04:25', '2025-04-19 13:04:25'),
+(6, 3, 'Paris', '2025-04-24', '2025-04-30', 'travel', 100.00, '2025-04-21 05:19:28', '2025-04-21 05:19:56');
 
 -- --------------------------------------------------------
 
@@ -86,7 +108,8 @@ INSERT INTO `users` (`user_id`, `username`, `email`, `password`, `created_at`, `
 (1, 'john', 'john@gmail.com', '$2y$10$MApdYr2s8KJRqGY8fSXrkOqrwKImpXqkavbVifi7DZz1s9jwzVgVK', '2025-04-19 10:26:08', 'user'),
 (2, 'James', 'james@gmail.com', '$2y$10$.R2XJxExE7cn8KLm2OXlRu8iws3VSPXsaT9urkDRxzAcXvZFXmbuq', '2025-04-19 11:02:36', 'user'),
 (3, 'User', 'user@gmail.com', '$2y$10$Sxk4kvGumKsOS0Ycj3nuNOjiZgNDYR7Lq9OUsprCOYkun9Ysfm9n.', '2025-04-19 11:07:40', 'user'),
-(6, 'admin', 'admin@gmail.com', '$2y$10$EGQfbI88DUM6uIoPqkzi8uEpNf0Nx.P7Go6H1ytEjwFbyJadHFpTa', '2025-04-19 12:36:04', 'Admin');
+(6, 'admin', 'admin@gmail.com', '$2y$10$EGQfbI88DUM6uIoPqkzi8uEpNf0Nx.P7Go6H1ytEjwFbyJadHFpTa', '2025-04-19 12:36:04', 'Admin'),
+(7, 'johny', 'johny@gmail.com', '$2y$10$Qkys.V0J8QDAKgDPeMmUUeDek8zXhDWjpxmj90kZdUeSBqS0IDrzm', '2025-04-21 12:43:18', 'Admin');
 
 --
 -- Indexes for dumped tables
@@ -98,6 +121,12 @@ INSERT INTO `users` (`user_id`, `username`, `email`, `password`, `created_at`, `
 ALTER TABLE `activities`
   ADD PRIMARY KEY (`activity_id`),
   ADD KEY `trip_id` (`trip_id`);
+
+--
+-- Indexes for table `contact_messages`
+--
+ALTER TABLE `contact_messages`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `trips`
@@ -125,16 +154,22 @@ ALTER TABLE `activities`
   MODIFY `activity_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `contact_messages`
+--
+ALTER TABLE `contact_messages`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT for table `trips`
 --
 ALTER TABLE `trips`
-  MODIFY `trip_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `trip_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- Constraints for dumped tables

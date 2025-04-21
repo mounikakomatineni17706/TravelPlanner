@@ -76,8 +76,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $stmt = $conn->prepare("INSERT INTO users (username, email, password, role) VALUES (?, ?, ?, ?)");
                 $stmt->execute([$username, $email, $hashed_password, $role]);
 
-                $success = "Registration successful! You can now login.";
-                $username = $email = $role = '';
+                if ($role === 'Admin') {
+                    $success = "Your admin registration request has been received. Please wait for approval.";
+                } else {
+                    $success = "Registration successful! You can now login.";
+                    $username = $email = $role = ''; // Reset form values
+                }
             }
         } catch (PDOException $e) {
             $errors['db'] = "Registration failed: " . $e->getMessage();
@@ -85,6 +89,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -94,6 +99,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <title>Register - Travel Planner</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="../css/style.css">
+    <style>
+        body {
+            background-image: url('../images/bg.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed; /* Optional: Keeps the background fixed during scrolling */
+        }
+    </style>
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
@@ -104,7 +117,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="../about.php" style="color: white;">About Us</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="../contact.php" style="color: white;">Contact</a>
+                </li>
                     <li class="nav-item"><a class="nav-link" href="login.php">Login</a></li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="admin_login.php">Admin Login</a>
+                    </li>
                     <li class="nav-item"><a class="nav-link active" href="register.php">Register</a></li>
                 </ul>
             </div>

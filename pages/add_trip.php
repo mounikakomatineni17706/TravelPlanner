@@ -85,6 +85,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <title>Add Trip - Travel Planner</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="../css/style.css">
+    <style>
+        body {
+            background-image: url('../images/bg1.jpg'); /* Replace with your image path */
+            background-size: cover; /* Ensures the background image covers the entire page */
+            background-position: center; /* Keeps the image centered */
+            background-repeat: no-repeat; /* Prevents repeating the background image */
+        }
+    </style>
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary">

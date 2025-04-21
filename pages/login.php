@@ -4,12 +4,11 @@ require_once "../db/connect.php";
 
 // Redirect if already logged in
 if (isset($_SESSION['user_id'])) {
-    if (strtolower($_SESSION['role']) === 'admin') { // Ensure the role is checked in lowercase
-        header("Location: admin_dashboard.php");
-        exit;
-    } else {
+    if (strtolower($_SESSION['role']) === 'user') {
         header("Location: dashboard.php");
         exit;
+    } elseif (strtolower($_SESSION['role']) === 'admin') {
+        $adminMessage = "Your request is still not approved by the admin.";
     }
 }
 
@@ -38,27 +37,23 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $user = $stmt->fetch();
 
             if ($user && password_verify($_POST['password'], $user['password'])) {
-                // Login successful, set session - Changed 'id' to 'user_id' to match database column
+                // Login successful, set session
                 $_SESSION['user_id'] = $user['user_id'];
                 $_SESSION['username'] = $user['username'];
                 $_SESSION['role'] = $user['role']; // Store the role as it is in the database
-                
+
                 // Set remember-me cookie if requested
                 if (isset($_POST['remember']) && $_POST['remember'] == 'on') {
                     $token = bin2hex(random_bytes(16));
                     setcookie('remember_token', $token, time() + (86400 * 30), "/");
                 }
 
-                // Debug line - you can remove this after testing
-                error_log("User {$user['username']} logged in with role: {$user['role']}");
-                
-                // Redirect based on role - case-insensitive comparison
-                if (strtolower($user['role']) === 'admin') { // Ensure case-insensitive role check
-                    header("Location: admin_dashboard.php");
-                    exit;
-                } else {
+                // Redirect to dashboard if role is user
+                if (strtolower($user['role']) === 'user') {
                     header("Location: dashboard.php");
                     exit;
+                } elseif (strtolower($user['role']) === 'admin') {
+                    $adminMessage = "Your request is still not approved by the admin.";
                 }
             } else {
                 $errors['login'] = 'Invalid username or password';
@@ -70,7 +65,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 }
 ?>
 
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -79,6 +73,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <title>Login - Travel Planner</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="../css/style.css">
+    <style>
+        body {
+            background-image: url('../images/bg.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+    </style>
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
@@ -89,8 +91,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="../about.php" style="color: white;">About Us</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="../contact.php" style="color: white;">Contact</a>
+                </li>
                     <li class="nav-item">
                         <a class="nav-link active" href="login.php">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link " href="admin_login.php">Admin Login</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="register.php">Register</a>
@@ -109,6 +120,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     <?php if (isset($errors['login']) || isset($errors['db'])): ?>
                         <div class="alert alert-danger">
                             <?php echo isset($errors['login']) ? $errors['login'] : $errors['db']; ?>
+                        </div>
+                    <?php endif; ?>
+
+                    <?php if (isset($adminMessage)): ?>
+                        <div class="alert alert-warning">
+                            <?php echo $adminMessage; ?>
                         </div>
                     <?php endif; ?>
 

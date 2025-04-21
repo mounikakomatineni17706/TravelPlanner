@@ -126,7 +126,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <link rel="stylesheet" href="../css/style.css">
     <style>
     body {
-        background-color: #dee1ec; /* Replace with your desired color */
+        background-image: url('../images/bg1.jpg'); /* Replace with your image path */
+            background-size: cover; /* Ensures the background image covers the entire page */
+            background-position: center; /* Keeps the image centered */
+            background-repeat: no-repeat; /* Prevents repeating the background image */
     }
 </style>
 </head>

@@ -40,6 +40,10 @@ try {
         body {
             display: flex;
             flex-direction: column;
+            background-image: url('../images/bg1.jpg'); /* Replace with your image path */
+            background-size: cover; /* Ensures the background image covers the entire page */
+            background-position: center; /* Keeps the image centered */
+            background-repeat: no-repeat; /* Prevents repeating the background image */
         }
         main {
             flex: 1;

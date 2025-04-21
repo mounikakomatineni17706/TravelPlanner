@@ -53,7 +53,10 @@ try {
     <link rel="stylesheet" href="../css/style.css">
     <style>
         body {
-            background-color: #dcd6f7;
+            background-image: url('../images/bg1.jpg'); /* Replace with your image path */
+            background-size: cover; /* Ensures the background image covers the entire page */
+            background-position: center; /* Keeps the image centered */
+            background-repeat: no-repeat; /* Prevents repeating the background image */
             padding-bottom: 70px; /* Add some space to avoid footer overlap */
         }
 
